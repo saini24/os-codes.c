@@ -1,0 +1,78 @@
+#include<stdio.h>
+int main()
+{
+	int i,j,at[20],bt[20],ct[20],tat[20],wt[20],p,t=0,n[20];
+	float t_tat=0,t_wt=0,avg_tat=0,avg_wt=0;
+	printf("Enter the no of processes : ");
+	scanf("%d",&p);
+	printf("Enter the process number : ");
+	for(i=0;i<p;i++)
+	{
+	    printf("p%d=",i);
+		scanf("%d",&n[i]);
+	}
+	
+	
+	printf("Enter the arrival time of %d processes : ",p);
+	for(i=0;i<p;i++)
+	{
+	    printf("p[%d]=",i);
+		scanf("%d",&at[i]);
+	}
+	printf("\n");
+		printf("Enter the burst time of %d processes : ",p);
+	for(i=0;i<p;i++)
+	{
+	    printf("p[%d]=",i);
+		scanf("%d",&bt[i]);
+	}
+	printf("\n");
+	int s=at[0];
+	for(j=0;j<p;j++)
+	{
+		s=s+bt[j];
+		ct[j]=s;
+		printf("ct [p %d]=%d\n",j,ct[j]);
+	}
+	printf("\n");
+	for(i=0;i<p;i++)
+	{
+		for(j=0;j<p-i-1;j++)
+		{
+			if(bt[j]>bt[j+1])
+			{
+				t=bt[j];
+				bt[j]=bt[j+1];
+				bt[j+1]=t;
+				
+				t=n[j];
+				n[j]=n[j+1];
+				n[j+1]=t;
+			}
+		}
+		
+	}
+		for(i=0;i<p;i++)
+	{
+		wt[i]=0;
+		tat[i]=0;
+			tat[i]=ct[i]-at[i];
+			avg_tat=avg_tat+tat[i];
+		printf("tat [p%d]=%d\n",i,tat[i]);
+	}
+	for(i=0;i<p;i++)
+	{
+		wt[i]=tat[i]-bt[i];
+		avg_wt=avg_wt+wt[i];
+			printf("wt [p %d]=%d\n",i,wt[i]);
+			}
+			avg_tat=avg_tat/p;
+			avg_wt=avg_wt/p;
+			printf("avg tat is %f",avg_tat);
+			printf("\n");
+			printf("avg wt is %f",avg_wt);
+			
+
+	return 0;
+}
+	
