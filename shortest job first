@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<math.h>
+int main ()
+{
+	int i,j,at[20],bt[20],ct[20],p,n[20],t=0,wt[20],tat[20];
+	printf("Enter the number of process : ");
+	scanf("%d",&p);
+	printf("Enter the  process number : ");
+	for(i=0;i<p;i++)
+	{
+		printf("p[%d]= ",i);
+		scanf("%d",&n[i]);
+	}
+	printf("Enter the arrival time : \n");
+	for(i=0;i<p;i++)
+	{
+		printf("p[%d]= ",i);
+		scanf("%d",&at[i]);
+	}
+	printf("Enter the burst time : \n");
+	for(i=0;i<p;i++)
+	{
+		printf("p[%d]= ",i);
+		scanf("%d",&bt[i]);
+	}
+		int s=at[0];
+	{
+		for(j=0;j<p;j++){
+		
+			s=s+bt[j];
+			ct[j]=s;
+			printf("ct[%d] = %d\n",i,ct[j]);
+		}
+		printf("\n");
+	for(i=0;i<p;i++)
+	{
+		for(j=0;j<p-i-1;j++)
+		{
+			if(bt[j]>bt[j+1])
+			{
+				t=bt[j];
+				bt[j]=bt[j+1];
+				bt[j+1]=t;
+				
+				t=n[j];
+				n[j]=n[j+1];
+				n[j+1]=t;
+				
+				t=at[j];
+				at[j]=at[j+1];
+				at[j+1]=t;
+				
+				}
+		}
+	}
+
+		for(i=0;i<p;i++)
+		{
+			tat[i]=0;
+			wt[i]=0;
+		tat[i]=ct[i]-at[i];
+			wt[i]=tat[i]-bt[i];
+		}
+		
+		
+	printf("Process\tat\tbt\ttat\twt \n");
+	for(i=0;i<p;i++)
+	
+		
+	
+		printf("%d\t%d\t%d\t%d\t%d\n",n[i],at[i],bt[i],tat[i],wt[i]);
+	}
+	return 0;
+}
